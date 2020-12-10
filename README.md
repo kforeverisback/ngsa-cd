@@ -1,6 +1,4 @@
-# My new repo
-
-> My new repo description ...
+# NGSA-CD
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
