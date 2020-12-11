@@ -1,6 +1,88 @@
-# NGSA-CD
-
+# NGSA GitOps for Continuous Deployment
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+
+The following instructions will set up Flux in a Kubernetes cluster for continuous deployment of the NGSA application.
+
+### Prerequisites
+
+- Kubernetes cluster
+- Helm v3
+
+
+### Installation Instructions
+
+Add FluxCD repository to Helm repos
+
+```bash
+
+helm repo add fluxcd https://charts.fluxcd.io
+
+```
+
+Create the namespace used by Flux
+
+``` bash
+
+kubectl create ns fluxcd
+
+```
+
+Install Flux Helm chart. Make sure you are using the right values depending on the desired configuration.
+```bash
+
+# Set your target git url
+# example: export Git_Url=git@github.com:retaildevcrews/ngsa-cd.git
+export Git_Url=[your git url]
+
+# Set your target git branch. This is the branch that Flux will track.
+# example: export Git_Branch=master
+export Git_Branch=[your git branch]
+
+# Set your target directory git path. This is the path Flux will look for yaml to be applied in the cluster.
+# example: export Git_Path=releases/dev
+export Git_Path=[your git path]
+
+
+helm upgrade -i flux fluxcd/flux --wait \
+  --namespace fluxcd \
+  --set git.url=$Git_Url \
+  --set git.branch=$Git_Branch \
+  --set git.path=$Git_Path \
+  --set additionalArgs={--sync-garbage-collection}
+
+```
+
+Install the `HelmRelease` Kubernetes custom resource definition
+```bash
+
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
+
+```
+Install the Flux Helm Operator
+``` bash
+
+helm upgrade -i helm-operator fluxcd/helm-operator --wait \
+--namespace fluxcd \
+--set git.ssh.secretName=flux-git-deploy \
+--set helm.versions=v3
+
+```
+
+Store the following key in GitHub as a deployment key. Make sure allow write-access is enabled.
+
+ ``` bash
+
+fluxctl identity --k8s-fwd-ns fluxcd
+
+```
+
+Your cluster should now sync with your configuration stored in GitHub. By default, the cluster looks for changes in the cluster every five minutes. To force a sync, use the following command.
+``` bash
+
+fluxctl sync --k8s-fwd-ns fluxcd
+
+```
 
 ## Contributing
 
