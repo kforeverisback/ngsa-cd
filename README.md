@@ -36,7 +36,7 @@ Install Flux Helm chart. Make sure you are using the right values depending on t
 export Git_Url=[your git url]
 
 # Set your target git branch. This is the branch that Flux will track.
-# example: export Git_Branch=master
+# example: export Git_Branch=main
 export Git_Branch=[your git branch]
 
 # Set your target directory git path. This is the path Flux will look for yaml to be applied in the cluster.
