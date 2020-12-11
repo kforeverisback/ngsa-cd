@@ -1,0 +1,35 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ngsa-cosmos
+  namespace: ngsa
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:beta-*
+spec:
+  releaseName: ngsa-cosmos
+  chart:
+    git: git@github.com:retaildevcrews/ngsa-cd
+    path: charts/ngsa
+    ref: main
+  values:
+    app:
+      args: []
+      region: East
+      secretName: ngsa-secrets
+      zone: Az-EastUS2
+    cert:
+      issuer: letsencrypt-prod
+      name: ngsa-cos-cert
+    image:
+      name: ngsa
+      repository: retaildevcrew
+      tag: beta-0.0.8-1210-2321-78
+    ingress:
+      hosts:
+      - ngsa-cos-pre-east.cse.ms
+      paths:
+      - /
+      tls:
+        httpsRedirect: true

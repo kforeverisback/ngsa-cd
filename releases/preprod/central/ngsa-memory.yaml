@@ -1,0 +1,35 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ngsa-memory
+  namespace: ngsa
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:beta-*
+spec:
+  releaseName: ngsa-memory
+  chart:
+    git: git@github.com:retaildevcrews/ngsa-cd
+    path: charts/ngsa
+    ref: main
+  values:
+    app:
+      args: ["--in-memory"]
+      region: Central
+      secretName: ngsa-secrets
+      zone: Az-CentralUS
+    cert:
+      issuer: letsencrypt-prod
+      name: ngsa-mem-cert
+    image:
+      name: ngsa
+      repository: retaildevcrew
+      tag: beta-0.0.8-1210-2321-78
+    ingress:
+      hosts:
+      - ngsa-mem-pre-central.cse.ms
+      paths:
+      - /
+      tls:
+        httpsRedirect: true
