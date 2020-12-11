@@ -8,6 +8,7 @@ The following instructions will set up Flux in a Kubernetes cluster for continuo
 
 - Kubernetes cluster
 - Helm v3
+- [fluxctl](https://docs.fluxcd.io/en/1.18.0/references/fluxctl.html)
 
 
 ### Installation Instructions
