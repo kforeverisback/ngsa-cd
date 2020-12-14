@@ -21,8 +21,7 @@ spec:
       issuer: letsencrypt-prod
       name: ngsa-mem-cert
     image:
-      name: ngsa
-      repository: retaildevcrew
+      repository: retaildevcrew/ngsa
       tag: beta-0.0.8-1210-2321-78
     ingress:
       hosts:
