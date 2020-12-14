@@ -23,7 +23,7 @@ spec:
     image:
       name: ngsa
       repository: retaildevcrew
-      tag: beta-0.0.8-1210-2321-78
+      tag: beta-0.0.8-1214-1721-90
     ingress:
       hosts:
       - ngsa-cos-dev.cse.ms
