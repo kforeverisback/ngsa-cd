@@ -22,7 +22,7 @@ spec:
       name: ngsa-cos-cert
     image:
       repository: retaildevcrew/ngsa
-      tag: beta-0.0.8-1214-1904-96
+      tag: beta-0.0.8-1214-2000-98
     ingress:
       hosts:
       - ngsa-cos-dev.cse.ms
