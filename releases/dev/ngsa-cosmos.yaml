@@ -6,7 +6,7 @@ metadata:
   namespace: ngsa
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: glob:beta-*
+    #fluxcd.io/tag.chart-image: glob:beta-*
 spec:
   releaseName: ngsa-cosmos
   chart:
