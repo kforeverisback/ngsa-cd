@@ -24,7 +24,7 @@ spec:
       name: ngsa-mem-cert
     image:
       repository: retaildevcrew/ngsa
-      tag: beta-0.0.8-1214-2000-98
+      tag: beta-0.0.8-1215-1532-101
     ingress:
       hosts:
       - ngsa-mem-pre-central.cse.ms
