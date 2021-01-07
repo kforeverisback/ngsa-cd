@@ -5,8 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: retaildevcrew
-  name: ngsa
+  repository: retaildevcrew/ngsa
   tag: beta
   pullPolicy: Always
 

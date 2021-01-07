@@ -23,8 +23,7 @@ spec:
       issuer: letsencrypt-prod
       name: ngsa-cos-cert
     image:
-      repository: retaildevcrew
-      name: ngsa
+      repository: retaildevcrew/ngsa
       tag: beta-0.0.8-1215-2142-117
     ingress:
       hosts:
