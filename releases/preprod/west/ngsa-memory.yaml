@@ -15,16 +15,19 @@ spec:
     ref: main
   values:
     app:
-      args: ["--in-memory"]
-      region: West
+      args: []
       secretName: ngsa-secrets
-      zone: Az-WestUS2
+      repository: retaildevcrew/ngsa-app
+      tag: beta-0.0.8-0111-1435-141
+    ds:
+      args:
+        - --in-memory
+      secretName: ngsa-secrets
+      repository: retaildevcrew/ngsa-dataservice
+      tag: beta-0.0.8-0111-0907-139
     cert:
       issuer: letsencrypt-prod
       name: ngsa-mem-cert
-    image:
-      repository: retaildevcrew/ngsa
-      tag: beta-0.0.8-1215-2142-117
     ingress:
       hosts:
       - ngsa-mem-pre-west.cse.ms
