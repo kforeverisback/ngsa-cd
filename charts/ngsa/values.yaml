@@ -4,21 +4,27 @@
 
 replicaCount: 1
 
-image:
-  repository: retaildevcrew/ngsa
+app:
+  repository: retaildevcrew/ngsa-app
   tag: beta
   pullPolicy: Always
+  args: []
+  port: 4120
+  secretName: ngsa-secrets
+
+ds:
+  repository: retaildevcrew/ngsa-dataservice
+  tag: beta
+  pullPolicy: Always
+  args: []
+  port: 4122
+  secretName: ngsa-secrets
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-app:
-  args: []
-  port: 4120
-  secretName: ngsa-secrets
-  region: "Debug"
-  zone: "Debug"
+
 
 livenessProbe:
   initialDelaySeconds: 120
